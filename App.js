@@ -9,13 +9,6 @@ export default function App() {
       'http://34.27.133.88:8080/api/items'
     );
     let json = await response.json();
-    console.log("--------------------" + JSON.stringify({
-      "id": 1, 
-      "name": "aaaaa", 
-      "price": "5.00", 
-      "quantity": 1, 
-      "supplier_id": 50001
-    }) + "---------------------");
     console.log(json);
     return json;
   };
@@ -43,13 +36,10 @@ export default function App() {
     let json = await response.json();
     if(response.status == 200){
       console.log("item was successfully added");
-    }
-    //console.log(json);
-    
+    }    
   } catch (error) {
     console.error("--------------" + error);
  }
-    //return json;
   };
 
 
