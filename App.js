@@ -1,6 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { ListViewBase, StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native';
+import ListItems from './ListItems.js';
+import SearchItem from './SearchItem.js'
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 export default function App() {
 
@@ -12,16 +16,18 @@ export default function App() {
     console.log(json);
     return json;
   };
-
+  
+  const Stack = createNativeStackNavigator();
 
 
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <TouchableOpacity onPress={getItemsFromApi}>
-          <Text>This is a button</Text>
-        </TouchableOpacity>
-    </View>
+   
+      <NavigationContainer>
+      <Stack.Navigator>
+         <Stack.Screen name="listitem" component={ListItems} />
+         <Stack.Screen name="searchforitem" component={SearchItem} />
+     </Stack.Navigator> 
+      </NavigationContainer>
   );
 }
 
