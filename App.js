@@ -33,7 +33,7 @@ export default function App() {
   // fill out the body with the data you want to send
   // resending this again will give an error since it already exists
   body: JSON.stringify({
-    "id": 11, 
+    "id": 3, 
     "name": "aaaaa", 
     "price": "5.00", 
     "quantity": 1, 
@@ -41,6 +41,9 @@ export default function App() {
   })
 });
     let json = await response.json();
+    if(response.status == 200){
+      console.log("item was successfully added");
+    }
     //console.log(json);
     
   } catch (error) {
