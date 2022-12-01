@@ -13,6 +13,15 @@ export default function App() {
     return json;
   };
 
+  const addItemTOApi = async () => {
+    let response = await fetch(
+      'http://34.27.133.88:8080/api/items'
+    );
+    let json = await response.json();
+    console.log(json);
+    return json;
+  };
+
 
 
   return (
