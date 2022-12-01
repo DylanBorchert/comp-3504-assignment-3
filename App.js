@@ -4,7 +4,7 @@ import { TouchableOpacity } from 'react-native';
 
 export default function App() {
 
-  const getArticlesFromApi = async () => {
+  const getItemsFromApi = async () => {
     let response = await fetch(
       'http://34.27.133.88:8080/api/items'
     );
@@ -18,7 +18,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text>Open up App.js to start working on your app!</Text>
-      <TouchableOpacity onPress={getArticlesFromApi}>
+      <TouchableOpacity onPress={getItemsFromApi}>
           <Text>This is a button</Text>
         </TouchableOpacity>
     </View>
