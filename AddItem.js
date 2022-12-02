@@ -91,7 +91,7 @@ const AddItem = ({ }) => {
                 <TextInput placeholder="Name" onChangeText={newText => setItemName(newText)}></TextInput>
                 <TextInput placeholder="Quantity" onChangeText={newText => setItemQuantity(newText)}></TextInput>
                 <TextInput placeholder="Price" onChangeText={newText => setItemPrice(newText)}></TextInput>
-                <SelectList data={supplierIDList}></SelectList>
+                {/* <SelectList data={supplierIDList}></SelectList> */}
             </View>
             <View>
                 <Text>Item ID is: {itemID}</Text>
