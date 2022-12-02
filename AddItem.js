@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
 import { SelectList } from 'react-native-dropdown-select-list';
-import { useState } from 'react';
+import { useEffect, useState, React } from 'react';
 
 
 const AddItem = ({ }) => {
@@ -11,7 +11,8 @@ const AddItem = ({ }) => {
     const [itemPrice, setItemPrice] = useState("");
     const [itemSupplierID, setSupplierID] = useState(0);
 
-    const [supplierIDList, setSupplierIDList] = useState([]);
+    const supplierIDList = getSupplierIDFromApi;
+    console.log(supplierIDList);
 
     const addItemTOApi = async () => {
         try {
@@ -39,6 +40,19 @@ const AddItem = ({ }) => {
         }
     };
 
+    const getSupplierIDFromApi = async () => {
+        try {
+            let response = await fetch(
+                'http://34.27.133.88:8080/api/suppliers/id'
+            );
+            let json = await response.json();
+            return json;
+        } catch (error) {
+            console.error("---------" + error);
+        } 
+
+    };
+
     return (
 
         <View>
@@ -48,18 +62,27 @@ const AddItem = ({ }) => {
                 <TextInput placeholder="Name" onChangeText={newText => setItemName(newText)}></TextInput>
                 <TextInput placeholder="Quantity" onChangeText={newText => setItemQuantity(newText)}></TextInput>
                 <TextInput placeholder="Price" onChangeText={newText => setItemPrice(newText)}></TextInput>
-                <SelectList></SelectList>
+                <SelectList data={supplierIDList}></SelectList>
             </View>
             <View>
                 <Text>Item ID is: {itemID}</Text>
                 <Text>Item Name is: {itemName}</Text>
                 <Text>Item Quantity is: {itemQuantity}</Text>
                 <Text>Item Price is: {itemPrice}</Text>
+                <Text>Item Supplier ID is: {itemSupplierID}</Text>
             </View>
+            <TouchableOpacity>
+                <Text>Cancel</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={addItemTOApi}>
+                <Text>Submit</Text>
+            </TouchableOpacity>
         </View>
 
     );
 
 }
+
+
 
 export default AddItem;

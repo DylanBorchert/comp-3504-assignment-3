@@ -19,34 +19,7 @@ export default function App() {
   };
 
   const Stack = createNativeStackNavigator();
-  const addItemTOApi = async () => {
-    try {
-      let response = await fetch(
-        'http://34.27.133.88:8080/api/items', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-
-        // fill out the body with the data you want to send
-        // resending this again will give an error since it already exists
-        body: JSON.stringify({
-          "id": 3,
-          "name": "aaaaa",
-          "price": "5.00",
-          "quantity": 1,
-          "supplier_id": 50001
-        })
-      });
-      let json = await response.json();
-      if (response.status == 200) {
-        console.log("item was successfully added");
-      }
-    } catch (error) {
-      console.error("--------------" + error);
-    }
-  };
+  
 
 
 
