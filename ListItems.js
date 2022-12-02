@@ -10,11 +10,7 @@ const ListItems = ({navigation}) => {
         navigation.navigate('searchforitem');
 
     const pressHandler = () => {
-        navigation.navigate('additem');
-
-      }
-      const pressHandlerAdd = () => {
-        navigation.navigate('additem');
+        navigation.navigate('searchforitem');
       }
 
     //   let items = [];
@@ -35,6 +31,21 @@ const ListItems = ({navigation}) => {
 
       }, []);
 
+    
+
+    const modelInfo = () => {
+        console.log(clickedItem)
+        return(
+            <View>
+                <Text style={styles.modalText}>{clickedItem.name}</Text>
+                <Text style={styles.modalText}>{clickedItem.price}</Text>
+                <Text style={styles.modalText}>{clickedItem.quantity}</Text>
+                <Text style={styles.modalText}>{clickedItem.supplier_id}</Text>
+            </View>
+        )
+    }
+
+// console.log(itemName)
 
     return (
         <View style={styles.container} >
@@ -59,7 +70,7 @@ const ListItems = ({navigation}) => {
                         style={[styles.button, styles.buttonClose]}
                         onPress={() => setModalVisible(!modalVisible)}
                         >
-                        <Text style={styles.textStyle}>Hide</Text>
+                        <Text style={styles.textStyle}>Hide Modal</Text>
                         </Pressable>
                     </View>
                     </View>
@@ -78,14 +89,7 @@ const ListItems = ({navigation}) => {
                     />
             </View>
             <TouchableOpacity>
-
-                <Text onPress={pressHandlerSearch}> Search for Item</Text>
-            </TouchableOpacity>
-            <Text>{"\n"}</Text>
-            <TouchableOpacity>
-                <Text onPress={pressHandlerAdd}> Add Item</Text>
-            </TouchableOpacity>
-                <Text onPress={pressHandler} style={styles.button}> Add Item</Text>
+                <Text onPress={pressHandler} style={styles.button}> Search for Item</Text>
             </TouchableOpacity> 
 
         </View>
@@ -185,6 +189,6 @@ const styles = StyleSheet.create ({
 
 
 
-})
+})}
 
 export default ListItems;

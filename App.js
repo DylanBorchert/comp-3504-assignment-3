@@ -28,11 +28,10 @@ export default function App() {
 
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="listitem" component={ListItems} />
-        <Stack.Screen name="searchforitem" component={SearchItem} />
-        <Stack.Screen name="additem" component={AddItem} />
-      </Stack.Navigator>
-    </NavigationContainer>
+         <Stack.Screen name="listitem" component={ListItems} />
+         <Stack.Screen name="searchforitem" component={SearchItem} />
+     </Stack.Navigator> 
+      </NavigationContainer>
   );
 }
 
