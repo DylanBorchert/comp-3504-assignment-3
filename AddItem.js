@@ -11,8 +11,17 @@ const AddItem = ({ }) => {
     const [itemPrice, setItemPrice] = useState("");
     const [itemSupplierID, setSupplierID] = useState(0);
 
-    const [supplierIDList, setSupplierIDList] = useState([]);
+    // Uncomment this:
+    // const [supplierIDList, setSupplierIDList] = useState([]);
 
+    // Delete this:
+    const supplierIDList = [
+        { key: 50001, value: 50001 },
+        { key: 50002, value: 50002 },
+        { key: 50003, value: 50003 },
+        { key: 50004, value: 50004 },
+        { key: 50005, value: 50005 },
+    ];
 
     const addItemTOApi = async () => {
         try {
@@ -40,22 +49,40 @@ const AddItem = ({ }) => {
         }
     };
 
+    //Uncomment this:
+
+    // const getSupplierIDList = async () => {
+
+    //     try {
+    //       //get user info from database
+    //       const response = await fetch(`http://34.27.133.88:8080/api/suppliers/id`, {
+    //         method: "GET",
+    //         headers: {
+    //           "Content-Type": "application/json",
+    //         },
+    //       });
+    //         //update push token
+    //       var data = await response.json();
+    //       //add key to each object
+    //         data = data.map(function(m) {
+    //             return {
+    //                 key: m.id,
+    //                 value: m.id
+    //             }
+    //         });
+    //       setSupplierIDList(data);
+
+    //     } catch (err) {
+    //       console.log(err);
+    //     }
+
+    //   }
+
+
     useEffect(() => {
 
-        fetch("http://34.27.133.88:8080/api/suppliers/id", {
-            headers: {
-                'Content-type': 'application/json',
-                Accept: 'application/json',
-            }
-        })
-            .then((resp) => resp.json())
-            .then(result => {
-                console.log(result);
-                setSupplierIDList(result);
-
-            }).catch(error => {
-                console.log(error);
-            })
+        // Uncommented this:
+        // getSupplierIDList();
 
     }, []);
 
@@ -68,14 +95,13 @@ const AddItem = ({ }) => {
                 <TextInput placeholder="Name" onChangeText={newText => setItemName(newText)}></TextInput>
                 <TextInput placeholder="Quantity" onChangeText={newText => setItemQuantity(newText)}></TextInput>
                 <TextInput placeholder="Price" onChangeText={newText => setItemPrice(newText)}></TextInput>
-                <SelectList data={supplierIDList}></SelectList>
+                <SelectList data={supplierIDList} setSelected={(val) => setSupplierID(val)}></SelectList>
             </View>
-            <TouchableOpacity>
-                <Text>Cancel</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={addItemTOApi}>
-                <Text>Submit</Text>
-            </TouchableOpacity>
+            <View>
+                <TouchableOpacity onPress={addItemTOApi}>
+                    <Text>Submit</Text>
+                </TouchableOpacity>
+            </View>
         </View>
 
     );
