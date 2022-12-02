@@ -8,7 +8,7 @@ const ListItems = ({navigation}) => {
 
     const pressHandlerSearch = () => {
         navigation.navigate('searchforitem');
-
+    }
     const pressHandler = () => {
         navigation.navigate('additem');
 
@@ -83,8 +83,6 @@ const ListItems = ({navigation}) => {
             </TouchableOpacity>
             <Text>{"\n"}</Text>
             <TouchableOpacity>
-                <Text onPress={pressHandlerAdd}> Add Item</Text>
-            </TouchableOpacity>
                 <Text onPress={pressHandler} style={styles.button}> Add Item</Text>
             </TouchableOpacity> 
 
