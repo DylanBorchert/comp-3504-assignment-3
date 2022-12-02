@@ -90,7 +90,16 @@ const ListItems = ({navigation}) => {
                     />
             </View>
             <TouchableOpacity>
+
+
+                <Text onPress={pressHandlerSearch}> Search for Item</Text>
+            </TouchableOpacity>
+            <Text>{"\n"}</Text>
+            <TouchableOpacity>
+                <Text onPress={pressHandler} style={styles.button}> Add Item</Text>
+
                 <Text onPress={pressHandler} style={styles.button}> Search for Item</Text>
+
             </TouchableOpacity> 
 
         </View>
