@@ -13,6 +13,7 @@ const AddItem = ({ }) => {
 
     const [supplierIDList, setSupplierIDList] = useState([]);
 
+
     const addItemTOApi = async () => {
         try {
             let response = await fetch(
@@ -39,30 +40,6 @@ const AddItem = ({ }) => {
         }
     };
 
-    // const getSupplierIDList = () => {
-    //     const json = getSupplierIDFromApi;
-    //     const data = json.map(function(id) {
-    //         return {
-    //             key: id
-    //         }
-    //     });
-    //     return data;
-    // }
-
-    // const getSupplierIDFromApi = async () => {
-    //     try {
-    //         let response = await fetch(
-    //             'http://34.27.133.88:8080/api/suppliers/id'
-    //         );
-    //         let json = await response.json();
-    //         return  json;
-    //     } catch (error) {
-    //         console.error("---------" + error);
-    //     } 
-
-
-    // };
-
     useEffect(() => {
 
         fetch("http://34.27.133.88:8080/api/suppliers/id", {
@@ -73,7 +50,7 @@ const AddItem = ({ }) => {
         })
             .then((resp) => resp.json())
             .then(result => {
-
+                console.log(result);
                 setSupplierIDList(result);
 
             }).catch(error => {
@@ -91,14 +68,7 @@ const AddItem = ({ }) => {
                 <TextInput placeholder="Name" onChangeText={newText => setItemName(newText)}></TextInput>
                 <TextInput placeholder="Quantity" onChangeText={newText => setItemQuantity(newText)}></TextInput>
                 <TextInput placeholder="Price" onChangeText={newText => setItemPrice(newText)}></TextInput>
-                {/* <SelectList data={supplierIDList}></SelectList> */}
-            </View>
-            <View>
-                <Text>Item ID is: {itemID}</Text>
-                <Text>Item Name is: {itemName}</Text>
-                <Text>Item Quantity is: {itemQuantity}</Text>
-                <Text>Item Price is: {itemPrice}</Text>
-                <Text>Item Supplier ID is: {itemSupplierID}</Text>
+                <SelectList data={supplierIDList}></SelectList>
             </View>
             <TouchableOpacity>
                 <Text>Cancel</Text>
