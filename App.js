@@ -9,6 +9,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 export default function App() {
 
+
   const getItemsFromApi = async () => {
     let response = await fetch(
       'http://34.27.133.88:8080/api/items'
@@ -34,4 +35,5 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
 
