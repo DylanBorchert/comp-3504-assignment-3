@@ -8,6 +8,7 @@ const ListItems = ({navigation}) => {
 
     const pressHandlerSearch = () => {
         navigation.navigate('searchforitem');
+    }
 
     const pressHandler = () => {
         navigation.navigate('searchforitem');
@@ -189,6 +190,6 @@ const styles = StyleSheet.create ({
 
 
 
-})}
+})
 
 export default ListItems;
