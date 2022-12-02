@@ -2,54 +2,37 @@ import { StatusBar } from 'expo-status-bar';
 import { ListViewBase, StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native';
 import ListItems from './ListItems.js';
-import SearchItem from './SearchItem.js'
+import SearchItem from './SearchItem.js';
+import AddItem from './AddItem.js';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 export default function App() {
 
-  
-  
-  const Stack = createNativeStackNavigator();
-  const addItemTOApi = async () => {
-    try{
-    let response = await fetch(
-      'http://34.27.133.88:8080/api/items', {
-  method: 'POST',
-  headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
-  },
 
-  // fill out the body with the data you want to send
-  // resending this again will give an error since it already exists
-  body: JSON.stringify({
-    "id": 3, 
-    "name": "aaaaa", 
-    "price": "5.00", 
-    "quantity": 1, 
-    "supplier_id": 50001
-  })
-});
+  const getItemsFromApi = async () => {
+    let response = await fetch(
+      'http://34.27.133.88:8080/api/items'
+    );
     let json = await response.json();
-    if(response.status == 200){
-      console.log("item was successfully added");
-    }    
-  } catch (error) {
-    console.error("--------------" + error);
- }
+    console.log(json);
+    return json;
   };
+
+  const Stack = createNativeStackNavigator();
+  
 
 
 
   return (
-   
-      <NavigationContainer>
+
+    <NavigationContainer>
       <Stack.Navigator>
-         <Stack.Screen name="listitem" component={ListItems} />
-         <Stack.Screen name="additem" component={SearchItem} />
-     </Stack.Navigator> 
-      </NavigationContainer>
+        <Stack.Screen name="listitem" component={ListItems} />
+        <Stack.Screen name="searchforitem" component={SearchItem} />
+        <Stack.Screen name="additem" component={AddItem} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 

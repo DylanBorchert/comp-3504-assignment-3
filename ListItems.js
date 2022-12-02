@@ -5,7 +5,15 @@ import React, { useState, useEffect } from 'react';
 
 const ListItems = ({navigation}) => {
 
+
+    const pressHandlerSearch = () => {
+        navigation.navigate('searchforitem');
+
     const pressHandler = () => {
+        navigation.navigate('additem');
+
+      }
+      const pressHandlerAdd = () => {
         navigation.navigate('additem');
       }
 
@@ -70,8 +78,16 @@ const ListItems = ({navigation}) => {
                     />
             </View>
             <TouchableOpacity>
+
+                <Text onPress={pressHandlerSearch}> Search for Item</Text>
+            </TouchableOpacity>
+            <Text>{"\n"}</Text>
+            <TouchableOpacity>
+                <Text onPress={pressHandlerAdd}> Add Item</Text>
+            </TouchableOpacity>
                 <Text onPress={pressHandler} style={styles.button}> Add Item</Text>
             </TouchableOpacity> 
+
         </View>
     );
 
