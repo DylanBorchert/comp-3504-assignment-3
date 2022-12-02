@@ -59,26 +59,39 @@ const AddItem = ({ }) => {
     //     } catch (error) {
     //         console.error("---------" + error);
     //     } 
-
-
     // };
+
+    const getSupplierIDList = async () => {
+    
+        try {
+          //get user info from database
+          const response = await fetch(`http://34.27.133.88:8080/api/suppliers/id`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+            //update push token
+          var data = await response.json();
+          //add key to each object
+            data = data.map(function(m) {
+                return {
+                    key: m.id,
+                    value: m.id
+                }
+            });
+          setSupplierIDList(data);
+    
+        } catch (err) {
+          console.log(err);
+        }
+    
+      }
+    
 
     useEffect(() => {
 
-        fetch("http://34.27.133.88:8080/api/suppliers/id", {
-            headers: {
-                'Content-type': 'application/json',
-                Accept: 'application/json',
-            }
-        })
-            .then((resp) => resp.json())
-            .then(result => {
-
-                setSupplierIDList(result);
-
-            }).catch(error => {
-                console.log(error);
-            })
+        getSupplierIDList();
 
     }, []);
 
@@ -91,13 +104,13 @@ const AddItem = ({ }) => {
                 <TextInput placeholder="Name" onChangeText={newText => setItemName(newText)}></TextInput>
                 <TextInput placeholder="Quantity" onChangeText={newText => setItemQuantity(newText)}></TextInput>
                 <TextInput placeholder="Price" onChangeText={newText => setItemPrice(newText)}></TextInput>
-                {/* <SelectList data={supplierIDList}></SelectList> */}
+                <SelectList data={supplierIDList}></SelectList>
             </View>
             <View>
                 <Text>Item ID is: {itemID}</Text>
                 <Text>Item Name is: {itemName}</Text>
                 <Text>Item Quantity is: {itemQuantity}</Text>
-                <Text>Item Price is: {itemPrice}</Text>
+                <Text>Item Price is: {itemPrice}</Text> 
                 <Text>Item Supplier ID is: {itemSupplierID}</Text>
             </View>
             <TouchableOpacity>
