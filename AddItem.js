@@ -11,8 +11,7 @@ const AddItem = ({ }) => {
     const [itemPrice, setItemPrice] = useState("");
     const [itemSupplierID, setSupplierID] = useState(0);
 
-    const supplierIDList = getSupplierIDFromApi;
-    console.log(supplierIDList);
+    const [supplierIDList, setSupplierIDList] = useState([]);
 
     const addItemTOApi = async () => {
         try {
@@ -40,18 +39,48 @@ const AddItem = ({ }) => {
         }
     };
 
-    const getSupplierIDFromApi = async () => {
-        try {
-            let response = await fetch(
-                'http://34.27.133.88:8080/api/suppliers/id'
-            );
-            let json = await response.json();
-            return json;
-        } catch (error) {
-            console.error("---------" + error);
-        } 
+    // const getSupplierIDList = () => {
+    //     const json = getSupplierIDFromApi;
+    //     const data = json.map(function(id) {
+    //         return {
+    //             key: id
+    //         }
+    //     });
+    //     return data;
+    // }
 
-    };
+    // const getSupplierIDFromApi = async () => {
+    //     try {
+    //         let response = await fetch(
+    //             'http://34.27.133.88:8080/api/suppliers/id'
+    //         );
+    //         let json = await response.json();
+    //         return  json;
+    //     } catch (error) {
+    //         console.error("---------" + error);
+    //     } 
+
+
+    // };
+
+    useEffect(() => {
+
+        fetch("http://34.27.133.88:8080/api/suppliers/id", {
+            headers: {
+                'Content-type': 'application/json',
+                Accept: 'application/json',
+            }
+        })
+            .then((resp) => resp.json())
+            .then(result => {
+
+                setSupplierIDList(result);
+
+            }).catch(error => {
+                console.log(error);
+            })
+
+    }, []);
 
     return (
 
