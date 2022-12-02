@@ -6,12 +6,12 @@ import React, { useState, useEffect } from 'react';
 const ListItems = ({navigation}) => {
 
 
-    const pressHandlerSearch = () => {
-        navigation.navigate('searchforitem');
-    }
+    // const pressHandlerSearch = () => {
+    //     navigation.navigate('searchforitem');
+    // }
 
     const pressHandler = () => {
-        navigation.navigate('searchforitem');
+        navigation.navigate('additem');
       }
 
     //   let items = [];
@@ -89,16 +89,14 @@ const ListItems = ({navigation}) => {
                     )}
                     />
             </View>
-            <TouchableOpacity>
-
-
+            {/* <TouchableOpacity>
                 <Text onPress={pressHandlerSearch}> Search for Item</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <Text>{"\n"}</Text>
             <TouchableOpacity>
                 <Text onPress={pressHandler} style={styles.button}> Add Item</Text>
 
-                <Text onPress={pressHandler} style={styles.button}> Search for Item</Text>
+                {/* <Text onPress={pressHandler} style={styles.button}> Search for Item</Text> */}
 
             </TouchableOpacity> 
 
