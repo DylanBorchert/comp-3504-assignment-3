@@ -13,6 +13,10 @@ const AddItem = ({ }) => {
     const [supplierIDList, setSupplierIDList] = useState([]);
 
     const addItemTOApi = async () => {
+        if (itemID == "" || itemName == "" || itemQuantity == "" || !isValidPrice(itemPrice) || itemSupplierID == 0) {
+            alert(`Error: Missing field or incorrect price format. Item not added. `)
+            return;
+        }
         try {
             let response = await fetch(
                 'http://34.27.133.88:8080/api/items', {
@@ -31,9 +35,10 @@ const AddItem = ({ }) => {
             });
             let json = await response.json();
             if (response.status == 200) {
-                console.log("item was successfully added");
+                alert("Item successfully added!");
             }
         } catch (error) {
+            alert("Error: " + error);
             console.error("--------------" + error);
         }
     };
@@ -65,6 +70,10 @@ const AddItem = ({ }) => {
 
     }
 
+    // Price format needs to be in #+.## (any number of digits, followed by a decimal, followed by two digits).
+    const isValidPrice = (price) => {
+        return /^\d+\.\d{2}/.test(price);
+    }
 
     useEffect(() => {
 
